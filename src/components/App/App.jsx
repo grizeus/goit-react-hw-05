@@ -1,6 +1,6 @@
 import "./App.css";
 
-function App() {
+const App = () => {
   return <h1>Project has been created</h1>;
 }
 
