@@ -15,11 +15,11 @@ const MovieList = props => {
             />
           </div>
           {actors.length > 0 && (
-            <div style={{ position: "relative" }}>
+            <div className={styles["list-container"]}>
               <ul className={styles["top-cast"]}>
                 {actors
                   .filter(actor => actor.movieId === movie.id)[0]
-                  ?.cast?.slice(0, 5)
+                  ?.cast.slice(0, 5)
                   .map(cast => (
                     <li className={styles.actor} key={cast.id}>
                       <span className={styles["actor-name"]}>{cast.name}</span>
