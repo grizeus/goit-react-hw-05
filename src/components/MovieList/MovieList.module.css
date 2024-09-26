@@ -5,6 +5,8 @@
 }
 
 .thumbnail {
+  position: relative;
+  z-index: 1;
   width: 200px;
   height: 300px;
   border-radius: 18px;
@@ -24,13 +26,11 @@
 }
 
 .thumbnail:hover .image {
-  opacity: 1;
-  visibility: visible;
   transform: translateY(-100%);
 }
 
 .top-cast {
-  /* font-size: 18px; */
+  font-size: 16px;
   position: absolute;
   top: -300px;
   left: 0;
@@ -39,5 +39,9 @@
 .actor {
   display: flex;
   flex-direction: column;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
+}
+
+.actor-name {
+  font-weight: 700;
 }
