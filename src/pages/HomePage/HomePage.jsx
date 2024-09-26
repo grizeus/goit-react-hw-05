@@ -1,10 +1,10 @@
 import { fetchTrendingMovies, fetchActors } from "../../api/fetch-api";
 import { useState, useEffect } from "react";
+import MovieList from "../../components/MovieList/MovieList";
 
 const HomePage = () => {
   const [movies, setMovies] = useState([]);
   const [actors, setActors] = useState([]);
-  const [id, setId] = useState(0);
 
   useEffect(() => {
     (async () => {
@@ -19,44 +19,22 @@ const HomePage = () => {
     })();
   }, []);
 
-  const idHandler = id => {
-    setId(id);
-  };
-
   useEffect(() => {
     const runner = async id => {
       try {
         const { data } = await fetchActors(id);
-        console.log(data.cast);
-        setActors(data.cast);
+        setActors(prev => [...prev, { movieId: id, cast: data.cast }]);
       } catch (error) {
         console.log(error);
       }
     };
-
-    if (id !== 0) {
-      runner(id);
-    }
-  }, [id]);
+    movies.map(movie => runner(movie.id));
+  }, [movies]);
 
   return (
     <div>
-      <h1>Home Page</h1>
-      <ul>
-        {movies.map(movie => (
-          <li key={movie.id}>
-            {movie.title}
-            <button onClick={() => idHandler(movie.id)}>Fetch Actors</button>
-            {actors.length > 0 && id === movie.id && (
-              <ul>
-                {actors.map(actor => (
-                  <li key={actor.id}>{actor.name}</li>
-                ))}
-              </ul>
-            )}
-          </li>
-        ))}
-      </ul>
+      <h1>Movies</h1>
+      <MovieList movies={movies} actors={actors} />
     </div>
   );
 };
