@@ -1,5 +1,6 @@
 import { fetchTrendingMovies, fetchActors } from "../../api/fetch-api";
 import { useState, useEffect } from "react";
+import MovieList from "../../components/MovieList/MovieList";
 
 const HomePage = () => {
   const [movies, setMovies] = useState([]);
@@ -41,22 +42,8 @@ const HomePage = () => {
 
   return (
     <div>
-      <h1>Home Page</h1>
-      <ul>
-        {movies.map(movie => (
-          <li key={movie.id}>
-            {movie.title}
-            <button onClick={() => idHandler(movie.id)}>Fetch Actors</button>
-            {actors.length > 0 && id === movie.id && (
-              <ul>
-                {actors.map(actor => (
-                  <li key={actor.id}>{actor.name}</li>
-                ))}
-              </ul>
-            )}
-          </li>
-        ))}
-      </ul>
+      <h1>Movies</h1>
+      <MovieList movies={movies} actors={actors} id={id} idHandler={idHandler} />
     </div>
   );
 };

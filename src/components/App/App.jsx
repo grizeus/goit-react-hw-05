@@ -10,11 +10,7 @@ const MovieCast = lazy(() => import("../../components/MovieCast/MovieCast"));
 const MovieReviews = lazy(() =>
   import("../../components/MovieReviews/MovieReviews")
 );
-// const MovieDetailsPage = lazy(
-//   () => "../../pages/MovieDetailsPage/MovieDetailsPage"
-// );
-// const MovieCast = lazy(() => "../../components/MovieCast/MovieCast");
-// const MovieReviews = lazy(() => "../../components/MovieReviews/MovieReviews");
+const NotFoundPage = lazy(() => import("../../pages/NotFoundPage/NotFoundPage"));
 
 import "./App.css";
 
@@ -28,6 +24,7 @@ const App = () => {
           <Route path="cast" element={<MovieCast />} />
           <Route path="reviews" element={<MovieReviews />} />
         </Route>
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Suspense>
   );
