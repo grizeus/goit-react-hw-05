@@ -24,6 +24,10 @@ const HomePage = () => {
     setId(id);
   };
 
+  const idResetter = () => {
+    setId(0);
+  };
+
   useEffect(() => {
     const runner = async id => {
       try {
@@ -43,7 +47,7 @@ const HomePage = () => {
   return (
     <div>
       <h1>Movies</h1>
-      <MovieList movies={movies} actors={actors} id={id} idHandler={idHandler} />
+      <MovieList movies={movies} actors={actors} id={id} idHandler={idHandler} resetter={idResetter} />
     </div>
   );
 };
