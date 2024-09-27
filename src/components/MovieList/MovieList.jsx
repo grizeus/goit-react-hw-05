@@ -13,8 +13,9 @@ const MovieList = props => {
           <li key={movie.id}>
             <div className={styles.thumbnail}>
               <img
+                width="300px"
                 className={styles.image}
-                src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
                 alt={movie.title}
               />
             </div>
