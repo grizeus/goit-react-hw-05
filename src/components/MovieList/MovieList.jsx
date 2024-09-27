@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom";
 
-
 import styles from "./MovieList.module.css";
 
 const MovieList = props => {
@@ -15,7 +14,11 @@ const MovieList = props => {
               <img
                 width="300px"
                 className={styles.image}
-                src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
+                src={
+                  movie.poster_path
+                    ? `https://image.tmdb.org/t/p/w300/${movie.poster_path}`
+                    : `https://upload.wikimedia.org/wikipedia/commons/0/04/NoDVDCover.svg`
+                }
                 alt={movie.title}
               />
             </div>

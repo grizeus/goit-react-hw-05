@@ -6,7 +6,7 @@ const Navigation = () => {
   
   const location = useLocation();
   const backLinkHref = location.state ?? "/movies";
-  console.log(location);
+  console.log(location.state);
   return (
     <header>
       <nav className={styles.navs}>
