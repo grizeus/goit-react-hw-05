@@ -32,3 +32,20 @@
   margin-block: 20px;
   gap: 32px;
 }
+
+.navs {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.link {
+  font-size: 22px;
+  font-weight: 600;
+  transition: color 0.3s ease-in-out;
+}
+
+.link:hover {
+  color: #007bff;
+}

@@ -29,7 +29,7 @@ const MovieDetailsPage = () => {
             width="300px"
             src={
               data.poster_path
-                ? `https://image.tmdb.org/t/p/w500${data.poster_path}`
+                ? `https://image.tmdb.org/t/p/w300${data.poster_path}`
                 : `https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg`
             }
             alt={data.original_title}
@@ -47,12 +47,16 @@ const MovieDetailsPage = () => {
         </div>
       </div>
       <nav>
-        <ul>
+        <ul className={styles.navs}>
           <li>
-            <NavLink to={`/movies/${movieId}/cast`}>Cast</NavLink>
+            <NavLink className={styles.link} to={`/movies/${movieId}/cast`}>
+              Cast
+            </NavLink>
           </li>
           <li>
-            <NavLink to={`/movies/${movieId}/reviews`}>Reviews</NavLink>
+            <NavLink className={styles.link} to={`/movies/${movieId}/reviews`}>
+              Reviews
+            </NavLink>
           </li>
         </ul>
       </nav>
