@@ -32,7 +32,7 @@ const MovieDetailsPage = () => {
         alt={data.original_title}
       />
       <h2>Score</h2>
-      <p>{data.popularity.toFixed()}</p>
+      <p>{Number(data.vote_average).toFixed(1)}</p>
       <h2>Genres:</h2>
       <p>{data.genres?.map(genre => genre.name).join(", ")}</p>
 
