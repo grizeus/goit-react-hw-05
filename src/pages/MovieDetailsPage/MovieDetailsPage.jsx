@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams, Outlet, NavLink } from "react-router-dom";
 import { fetchMovieDetails } from "../../api/fetch-api";
 
+import styles from "./MovieDetailsPage.module.css";
+
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [data, setData] = useState({});
@@ -11,7 +13,6 @@ const MovieDetailsPage = () => {
       try {
         const { data } = await fetchMovieDetails(movieId);
         setData(data);
-        console.log(data);
       } catch (error) {
         console.log(error);
       }
@@ -22,22 +23,29 @@ const MovieDetailsPage = () => {
   return (
     <div>
       <h1>{`${data.title} (${releaseYear})`}</h1>
-      <img
-        width="300px"
-        src={
-          data.poster_path
-            ? `https://image.tmdb.org/t/p/w500${data.poster_path}`
-            : `https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg`
-        }
-        alt={data.original_title}
-      />
-      <h2>Score</h2>
-      <p>{Number(data.vote_average).toFixed(1)}</p>
-      <h2>Genres:</h2>
-      <p>{data.genres?.map(genre => genre.name).join(", ")}</p>
-
-      <h2>Trivia</h2>
-      <p>{data.overview}</p>
+      <div className={styles["main-details"]}>
+        <div className={styles.thumb}>
+          <img
+            width="300px"
+            src={
+              data.poster_path
+                ? `https://image.tmdb.org/t/p/w500${data.poster_path}`
+                : `https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg`
+            }
+            alt={data.original_title}
+          />
+        </div>
+        <div className={styles.stats}>
+          <h2>Score</h2>
+          <p>{Number(data.vote_average).toFixed(1)}</p>
+          <h2>Genres:</h2>
+          <p>{data.genres?.map(genre => genre.name).join(", ")}</p>
+          <h2>Trivia</h2>
+          <p>{data.overview}</p>
+          <h2>Country</h2>
+          <p>{data.origin_country}</p>
+        </div>
+      </div>
       <nav>
         <ul>
           <li>
