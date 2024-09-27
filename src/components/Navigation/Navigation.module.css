@@ -1,0 +1,20 @@
+.navs {
+  padding: 20px 20px;
+  border-bottom: .5px solid #e5e5e5;
+}
+
+.navs ul {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+
+.link {
+  font-size: 22px;
+  font-weight: 600;
+  transition: color 0.3s ease-in-out;
+}
+
+.link:hover {
+  color: #007bff;
+}
