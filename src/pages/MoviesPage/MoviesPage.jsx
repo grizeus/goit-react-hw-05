@@ -1,5 +1,12 @@
+import Navigation from "../../components/Navigation/Navigation";
+
 const MoviesPage = () => {
-  return <div>Movies Page</div>;
+  return (
+    <>
+      <Navigation />
+      <div>Movies Page</div>
+    </>
+  );
 };
 
 export default MoviesPage;

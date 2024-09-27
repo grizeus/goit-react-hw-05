@@ -1,12 +1,23 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 import styles from "./Navigation.module.css";
 
 const Navigation = () => {
+  
+  const location = useLocation();
+  const backLinkHref = location.state ?? "/movies";
+  console.log(location);
   return (
     <header>
       <nav className={styles.navs}>
         <ul>
+          {location.pathname !== "/" && location.pathname !== "/movies" && (
+            <li>
+              <NavLink className={styles.link} to={backLinkHref}>
+                Back
+              </NavLink>
+            </li>
+          )}
           <li>
             <NavLink className={styles.link} to="/">
               Home

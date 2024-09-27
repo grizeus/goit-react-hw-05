@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams, Outlet, NavLink } from "react-router-dom";
 import { fetchMovieDetails } from "../../api/fetch-api";
 
+import Navigation from "../../components/Navigation/Navigation";
+
 import styles from "./MovieDetailsPage.module.css";
 
 const MovieDetailsPage = () => {
@@ -22,6 +24,7 @@ const MovieDetailsPage = () => {
   const releaseYear = new Date(data.release_date).getFullYear();
   return (
     <div>
+      <Navigation />
       <h1>{`${data.title} (${releaseYear})`}</h1>
       <div className={styles["main-details"]}>
         <div className={styles.thumb}>
