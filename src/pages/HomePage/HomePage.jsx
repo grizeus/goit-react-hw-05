@@ -1,5 +1,6 @@
 import { fetchTrendingMovies, fetchActors } from "../../api/fetch-api";
 import { useState, useEffect } from "react";
+
 import MovieList from "../../components/MovieList/MovieList";
 import Navigation from "../../components/Navigation/Navigation";
 
