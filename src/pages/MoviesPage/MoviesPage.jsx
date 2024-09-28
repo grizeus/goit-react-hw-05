@@ -10,10 +10,11 @@ import MovieList from "../../components/MovieList/MovieList";
 import styles from "./MoviesPage.module.css";
 
 const MoviesPage = () => {
-  const [query, setQuery] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams({ q: "" });
   const [movies, setMovies] = useState([]);
   const [actors, setActors] = useState([]);
-  const [_, setSearchParams] = useSearchParams();
+
+  const query = searchParams.get("q");
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -25,8 +26,14 @@ const MoviesPage = () => {
       return;
     }
 
-    setQuery(curQuery);
-    setSearchParams({ name: curQuery });
+    setSearchParams(
+      prev => {
+        prev.set("q", curQuery);
+        return prev;
+      },
+      { replace: true }
+    );
+
     form.reset();
   };
 
