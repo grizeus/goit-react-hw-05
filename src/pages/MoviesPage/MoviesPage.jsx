@@ -6,6 +6,7 @@ import { fetchSearchByKeyword, fetchActors } from "../../api/fetch-api";
 
 import Navigation from "../../components/Navigation/Navigation";
 import MovieList from "../../components/MovieList/MovieList";
+import Container from "../../components/Container/Container";
 
 import styles from "./MoviesPage.module.css";
 
@@ -83,10 +84,17 @@ const MoviesPage = () => {
             autoFocus
             placeholder="Search movies..."
           />
-          <button className={styles.btn} type="submit">Search</button>
+          <button className={styles.btn} type="submit">
+            Search
+          </button>
         </form>
       </Navigation>
-      <MovieList movies={movies} actors={actors} />
+      <Container>
+        {movies.length > 0 && <MovieList movies={movies} actors={actors} />}{" "}
+        {movies.length === 0 && query !== "" && (
+          <p className={styles.info}>No movies found</p>
+        )}
+      </Container>
     </>
   );
 };

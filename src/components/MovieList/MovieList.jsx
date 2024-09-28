@@ -24,7 +24,7 @@ const MovieList = props => {
               />
             </div>
             {actors.length > 0 && (
-              <div className={styles["list-container"]}>
+              <div className={styles["card-container"]}>
                 <ul className={styles["top-cast"]}>
                   {actors
                     .filter(actor => actor.movieId === movie.id)[0]

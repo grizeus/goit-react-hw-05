@@ -49,3 +49,10 @@
 .btn:hover {
   background-color: #6c8cff;
 }
+
+.info {
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 150%;
+  letter-spacing: 0.02em;
+}

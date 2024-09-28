@@ -1,8 +1,9 @@
 import { fetchTrendingMovies, fetchActors } from "../../api/fetch-api";
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 
-import MovieList from "../../components/MovieList/MovieList";
 import Navigation from "../../components/Navigation/Navigation";
+import Container from "../../components/Container/Container";
+const MovieList = lazy(() => import("../../components/MovieList/MovieList"));
 
 import styles from "./HomePage.module.css";
 
@@ -40,9 +41,11 @@ const HomePage = () => {
       <Navigation>
         <h1 className={styles.title}>Trending Movies</h1>
       </Navigation>
-      <div>
-        <MovieList movies={movies} actors={actors} />
-      </div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Container>
+          <MovieList movies={movies} actors={actors} />
+        </Container>
+      </Suspense>
     </>
   );
 };

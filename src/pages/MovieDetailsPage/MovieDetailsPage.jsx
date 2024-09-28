@@ -5,6 +5,7 @@ import { fetchMovieDetails } from "../../api/fetch-api";
 import Navigation from "../../components/Navigation/Navigation";
 
 import styles from "./MovieDetailsPage.module.css";
+import Container from "../../components/Container/Container";
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
@@ -15,6 +16,7 @@ const MovieDetailsPage = () => {
       try {
         const { data } = await fetchMovieDetails(movieId);
         setData(data);
+        console.log(data);
       } catch (error) {
         console.log(error);
       }
@@ -25,6 +27,7 @@ const MovieDetailsPage = () => {
   return (
     <div>
       <Navigation />
+      <Container>
       <h1>{`${data.title} (${releaseYear})`}</h1>
       <div className={styles["main-details"]}>
         <div className={styles.thumb}>
@@ -63,7 +66,8 @@ const MovieDetailsPage = () => {
           </li>
         </ul>
       </nav>
-      <Outlet />
+        <Outlet />
+        </Container>
     </div>
   );
 };
