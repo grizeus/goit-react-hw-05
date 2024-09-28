@@ -83,7 +83,7 @@ const MoviesPage = () => {
             autoFocus
             placeholder="Search movies..."
           />
-          <button type="submit">Search</button>
+          <button className={styles.btn} type="submit">Search</button>
         </form>
       </Navigation>
       <MovieList movies={movies} actors={actors} />

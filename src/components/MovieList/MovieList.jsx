@@ -1,14 +1,15 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 import styles from "./MovieList.module.css";
 
 const MovieList = props => {
   const { movies, actors } = props;
+  const location = useLocation();
 
   return (
     <ul className={styles.list}>
       {movies.map(movie => (
-        <NavLink key={movie.id} to={`/movies/${movie.id}`}>
+        <NavLink key={movie.id} to={`/movies/${movie.id}`} state={location}>
           <li key={movie.id}>
             <div className={styles.thumbnail}>
               <img
