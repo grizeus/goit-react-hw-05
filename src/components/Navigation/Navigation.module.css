@@ -1,4 +1,10 @@
-.navs {
+.header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  background-color: #fff;
   padding: 20px 20px;
   border-bottom: .5px solid #e5e5e5;
 }

@@ -66,19 +66,20 @@ const MoviesPage = () => {
           duration: 2000,
         }}
       />
-      <Navigation />
-      <form onSubmit={handleSubmit} className={styles["search-form"]}>
-        <input
-          className={styles["search-input"]}
-          type="text"
-          autoComplete="off"
-          name="query"
-          autoFocus
-          placeholder="Search movies..."
-        />
-        <button type="submit">Search</button>
-        <MovieList movies={movies} actors={actors} />
-      </form>
+      <Navigation>
+        <form onSubmit={handleSubmit} className={styles["search-form"]}>
+          <input
+            className={styles["search-input"]}
+            type="text"
+            autoComplete="off"
+            name="query"
+            autoFocus
+            placeholder="Search movies..."
+          />
+          <button type="submit">Search</button>
+        </form>
+      </Navigation>
+      <MovieList movies={movies} actors={actors} />
     </>
   );
 };

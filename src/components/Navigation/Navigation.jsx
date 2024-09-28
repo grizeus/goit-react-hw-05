@@ -2,13 +2,13 @@ import { NavLink, useLocation } from "react-router-dom";
 
 import styles from "./Navigation.module.css";
 
-const Navigation = () => {
+const Navigation = ({children}) => {
   
   const location = useLocation();
   const backLinkHref = location.state ?? "/movies";
   console.log(location.state);
   return (
-    <header>
+    <header className={styles.header}>
       <nav className={styles.navs}>
         <ul>
           {location.pathname !== "/" && location.pathname !== "/movies" && (
@@ -30,6 +30,7 @@ const Navigation = () => {
           </li>
         </ul>
       </nav>
+      {children}
     </header>
   );
 };
