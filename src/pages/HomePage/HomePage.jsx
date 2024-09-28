@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import MovieList from "../../components/MovieList/MovieList";
 import Navigation from "../../components/Navigation/Navigation";
 
+import styles from "./HomePage.module.css";
+
 const HomePage = () => {
   const [movies, setMovies] = useState([]);
   const [actors, setActors] = useState([]);
@@ -35,9 +37,10 @@ const HomePage = () => {
 
   return (
     <>
-      <Navigation />
+      <Navigation>
+        <h1 className={styles.title}>Trending Movies</h1>
+      </Navigation>
       <div>
-        <h1>Tranding Movies</h1>
         <MovieList movies={movies} actors={actors} />
       </div>
     </>
