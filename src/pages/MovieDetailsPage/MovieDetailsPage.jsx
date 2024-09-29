@@ -13,6 +13,8 @@ const MovieDetailsPage = () => {
   const location = useLocation();
   const backLinkHref = location.state ?? "/movies";
 
+  console.log(location);
+
   useEffect(() => {
     (async () => {
       try {
@@ -29,11 +31,9 @@ const MovieDetailsPage = () => {
     <div>
       <Navigation />
       <Container>
-        {location.pathname !== "/" && location.pathname !== "/movies" && (
-          <NavLink className={styles.link} to={backLinkHref}>
-            Back
-          </NavLink>
-        )}
+        <NavLink className={styles.link} to={backLinkHref}>
+          Back
+        </NavLink>
         <h1>{`${data.title} (${releaseYear})`}</h1>
         <div className={styles["main-details"]}>
           <div className={styles.thumb}>
@@ -61,14 +61,18 @@ const MovieDetailsPage = () => {
         <nav>
           <ul className={styles.navs}>
             <li>
-              <NavLink className={styles.link} to={`/movies/${movieId}/cast`}>
+              <NavLink
+                className={styles.link}
+                to={`/movies/${movieId}/cast`}
+                state={location.state}>
                 Cast
               </NavLink>
             </li>
             <li>
               <NavLink
                 className={styles.link}
-                to={`/movies/${movieId}/reviews`}>
+                to={`/movies/${movieId}/reviews`}
+                state={location.state}>
                 Reviews
               </NavLink>
             </li>
