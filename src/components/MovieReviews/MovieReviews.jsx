@@ -6,7 +6,7 @@ import styles from "./MovieReviews.module.css";
 
 const MovieReviews = () => {
   const { movieId } = useParams();
-  const [results, setResults] = useState({});
+  const [results, setResults] = useState([]);
 
   useEffect(() => {
     (async () => {
