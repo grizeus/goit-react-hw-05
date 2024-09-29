@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, Outlet, NavLink } from "react-router-dom";
+import { useParams, useLocation, Outlet, NavLink } from "react-router-dom";
 import { fetchMovieDetails } from "../../api/fetch-api";
 
 import Navigation from "../../components/Navigation/Navigation";
@@ -10,6 +10,8 @@ import Container from "../../components/Container/Container";
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [data, setData] = useState({});
+  const location = useLocation();
+  const backLinkHref = location.state ?? "/movies";
 
   useEffect(() => {
     (async () => {
@@ -28,46 +30,53 @@ const MovieDetailsPage = () => {
     <div>
       <Navigation />
       <Container>
-      <h1>{`${data.title} (${releaseYear})`}</h1>
-      <div className={styles["main-details"]}>
-        <div className={styles.thumb}>
-          <img
-            width="300px"
-            src={
-              data.poster_path
-                ? `https://image.tmdb.org/t/p/w300${data.poster_path}`
-                : `https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg`
-            }
-            alt={data.original_title}
-          />
+        {location.pathname !== "/" && location.pathname !== "/movies" && (
+          <NavLink className={styles.link} to={backLinkHref}>
+            Back
+          </NavLink>
+        )}
+        <h1>{`${data.title} (${releaseYear})`}</h1>
+        <div className={styles["main-details"]}>
+          <div className={styles.thumb}>
+            <img
+              width="300px"
+              src={
+                data.poster_path
+                  ? `https://image.tmdb.org/t/p/w300${data.poster_path}`
+                  : `https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg`
+              }
+              alt={data.original_title}
+            />
+          </div>
+          <div className={styles.stats}>
+            <h2>Score</h2>
+            <p>{Number(data.vote_average).toFixed(1)}</p>
+            <h2>Genres:</h2>
+            <p>{data.genres?.map(genre => genre.name).join(", ")}</p>
+            <h2>Trivia</h2>
+            <p>{data.overview}</p>
+            <h2>Country</h2>
+            <p>{data.origin_country}</p>
+          </div>
         </div>
-        <div className={styles.stats}>
-          <h2>Score</h2>
-          <p>{Number(data.vote_average).toFixed(1)}</p>
-          <h2>Genres:</h2>
-          <p>{data.genres?.map(genre => genre.name).join(", ")}</p>
-          <h2>Trivia</h2>
-          <p>{data.overview}</p>
-          <h2>Country</h2>
-          <p>{data.origin_country}</p>
-        </div>
-      </div>
-      <nav>
-        <ul className={styles.navs}>
-          <li>
-            <NavLink className={styles.link} to={`/movies/${movieId}/cast`}>
-              Cast
-            </NavLink>
-          </li>
-          <li>
-            <NavLink className={styles.link} to={`/movies/${movieId}/reviews`}>
-              Reviews
-            </NavLink>
-          </li>
-        </ul>
-      </nav>
+        <nav>
+          <ul className={styles.navs}>
+            <li>
+              <NavLink className={styles.link} to={`/movies/${movieId}/cast`}>
+                Cast
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className={styles.link}
+                to={`/movies/${movieId}/reviews`}>
+                Reviews
+              </NavLink>
+            </li>
+          </ul>
+        </nav>
         <Outlet />
-        </Container>
+      </Container>
     </div>
   );
 };

@@ -1,29 +1,30 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import clsx from "clsx";
 
 import styles from "./Navigation.module.css";
 
-const Navigation = ({children}) => {
-  
-  const location = useLocation();
-  const backLinkHref = location.state ?? "/movies";
+const Navigation = ({ children }) => {
   return (
     <header className={styles.header}>
       <nav className={styles.navs}>
         <ul>
-          {location.pathname !== "/" && location.pathname !== "/movies" && (
-            <li>
-              <NavLink className={styles.link} to={backLinkHref}>
-                Back
-              </NavLink>
-            </li>
-          )}
           <li>
-            <NavLink className={styles.link} to="/">
+            <NavLink
+              className={clsx(
+                styles.link,
+                location.pathname === "/" && styles.active
+              )}
+              to="/">
               Home
             </NavLink>
           </li>
           <li>
-            <NavLink className={styles.link} to="/movies">
+            <NavLink
+              className={clsx(
+                styles.link,
+                location.pathname === "/movies" && styles.active
+              )}
+              to="/movies">
               Movies
             </NavLink>
           </li>
