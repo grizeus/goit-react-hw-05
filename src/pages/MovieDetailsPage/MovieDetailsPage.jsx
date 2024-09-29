@@ -18,7 +18,6 @@ const MovieDetailsPage = () => {
       try {
         const { data } = await fetchMovieDetails(movieId);
         setData(data);
-        console.log(data);
       } catch (error) {
         console.log(error);
       }
