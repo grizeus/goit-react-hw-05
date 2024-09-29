@@ -1,9 +1,10 @@
-import { NavLink } from "react-router-dom";
+import { useLocation, NavLink } from "react-router-dom";
 import clsx from "clsx";
 
 import styles from "./Navigation.module.css";
 
 const Navigation = ({ children }) => {
+  const location = useLocation();
   return (
     <header className={styles.header}>
       <nav className={styles.navs}>
